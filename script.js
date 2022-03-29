@@ -22,14 +22,14 @@ console.log("Стоимость разработки сайта в рублях:
 console.log(screens.toLowerCase().split(", "));
 console.log(fullPrice * (rollback / 100));*/
 //-----------lesson3---------------
-/*console.log(title);
+console.log(title);
 console.log(screens);
 console.log(parseFloat(screenPrice));
 console.log(adaptive);
 console.log(service1);
 console.log(parseFloat(servicePrice1));
 console.log(service2);
-console.log(parseFloat(servicePrice2));*/
+console.log(parseFloat(servicePrice2));
 console.log(parseFloat(fullPrice));
 console.log(Math.round(servicePercentPrice));
 if (fullPrice > 30000) {
@@ -38,21 +38,8 @@ if (fullPrice > 30000) {
     console.log('Даем скидку в 5%');
 } else if (0 <= fullPrice && 15000 >= fullPrice) {
     console.log('Скидка не предусмотрена');
-} else if (0 > fullPrice) {
+} else   {
     console.log('Что то пошло не так');
 }
 
 
-/*
-let  fullPrice =-97;
-
-if (fullPrice > 30000) {
-    console.log('Даем скидку в 10%');
-} else if (15000 <= fullPrice && 30000 >= fullPrice) {
-    console.log('Даем скидку в 5%');
-} else if (0 <= fullPrice && 15000 >= fullPrice) {
-    console.log('Скидка не предусмотрена');
-} else if (0 > fullPrice ) {
-    console.log('Что то пошло не так');
-}
-*/
