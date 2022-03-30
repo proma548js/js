@@ -2,53 +2,64 @@
 let title = prompt('Как называется ваш проект?');
 let screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные");
 let screenPrice = +prompt('Сколько будет стоить данная работа?', "пример: 12000");
-let rollback = 20;
 let adaptive = window.confirm("Нужен ли адаптив на сайте");
 let service1 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice1 = +prompt('Сколько это будет стоить?');
 let service2 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice2 = +prompt('Сколько это будет стоить?');
-let fullPrice ;
-let servicePercentPrice = (fullPrice - 100);
+let rollback = 20;
+let fullPrice;
+let servicePercentPrice = (fullPrice - (fullPrice * (rollback / 100)));
 let allServicePrices;
 
-
-//alert("hello world");
-//console.log("hi");
-//----------lesson2---------------
-/*console.log(typeof (title));
-console.log(typeof (fullPrice));
-console.log(typeof (adaptive));
-console.log(screens.length);
-console.log("Стоимость верстки экранов в рублях:", screenPrice, "Стоимость верстки экранов в долларах:", screenPrice / 3.2, "Стоимость верстки экранов в юанях:", screenPrice / 5);
-console.log("Стоимость разработки сайта в рублях:", fullPrice, "Стоимость разработки сайта в долларах:", fullPrice / 3.2, "Стоимость разработки сайта в юанях:", fullPrice / 5);
-console.log(screens.toLowerCase().split(", "));
-console.log(fullPrice * (rollback / 100));*/
-//-----------lesson3---------------
-const getAllServicePrices = function(){
-    return servicePrice1 + servicePrice2;
+const showTypeof = function (variable) {
+    console.log(variable, typeof variable);
 };
 
-function getFullPrice (){
-    return  screenPrice + allServicePrices;
+const getRollbackMessage = function (cena) {
+    if (cena > 30000) {
+        return 'Даем скидку в 10%';
+    } else if (15000 <= cena && 30000 >= cena) {
+        return 'Даем скидку в 5%';
+    } else if (0 <= cena && 15000 > cena) {
+        return ('Скидка не предусмотрена');
+    } else {
+        return 'Что то пошло не так';
+    }
+
+};
+
+const getAllServicePrices = function () {
+    return servicePrice1 + servicePrice2;
+};
+function getFullPrice() {
+    return screenPrice + allServicePrices;
 }
 
-if (fullPrice > 30000) {
-    console.log('Даем скидку в 10%');
-} else if (15000 <= fullPrice && 30000 >= fullPrice) {
-    console.log('Даем скидку в 5%');
-} else if (0 <= fullPrice && 15000 >= fullPrice) {
-    console.log('Скидка не предусмотрена');
-} else   {
-    console.log('Что то пошло не так');
-}
+const getTitle = function (str) {
+    return str.replace(/^ +| +$|( ) +/g, "$1").charAt(0).toUpperCase();
+    //return title.toUpperCase();
+    //return str[0,1].toUpperCase().replace(/^ +| +$|( ) +/g, "$1");
+};
+
 
 allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice ();
+fullPrice = getFullPrice();
+title = getTitle(title);
 
+showTypeof(title);
+showTypeof(screenPrice);
+showTypeof(adaptive);
+
+
+
+console.log(getRollbackMessage(fullPrice));
 console.log(allServicePrices);
 console.log(fullPrice);
 console.log(title);
+/*
+console.log(title);
+>>>>>>> dev
 console.log(screens);
 console.log(parseFloat(screenPrice));
 console.log(adaptive);
@@ -58,3 +69,4 @@ console.log(service2);
 console.log(parseFloat(servicePrice2));
 console.log(parseFloat(fullPrice));
 console.log(Math.round(servicePercentPrice));
+*/
