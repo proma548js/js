@@ -8,8 +8,11 @@ let service1 = prompt('Какой дополнительный тип услуг
 let servicePrice1 = +prompt('Сколько это будет стоить?');
 let service2 = prompt('Какой дополнительный тип услуги нужен?');
 let servicePrice2 = +prompt('Сколько это будет стоить?');
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
+let fullPrice ;
 let servicePercentPrice = (fullPrice - 100);
+let allServicePrices;
+
+
 //alert("hello world");
 //console.log("hi");
 //----------lesson2---------------
@@ -22,16 +25,14 @@ console.log("Стоимость разработки сайта в рублях:
 console.log(screens.toLowerCase().split(", "));
 console.log(fullPrice * (rollback / 100));*/
 //-----------lesson3---------------
-console.log(title);
-console.log(screens);
-console.log(parseFloat(screenPrice));
-console.log(adaptive);
-console.log(service1);
-console.log(parseFloat(servicePrice1));
-console.log(service2);
-console.log(parseFloat(servicePrice2));
-console.log(parseFloat(fullPrice));
-console.log(Math.round(servicePercentPrice));
+const getAllServicePrices = function(){
+    return servicePrice1 + servicePrice2;
+};
+
+function getFullPrice (){
+    return  screenPrice + allServicePrices;
+}
+
 if (fullPrice > 30000) {
     console.log('Даем скидку в 10%');
 } else if (15000 <= fullPrice && 30000 >= fullPrice) {
@@ -42,4 +43,18 @@ if (fullPrice > 30000) {
     console.log('Что то пошло не так');
 }
 
+allServicePrices = getAllServicePrices();
+fullPrice = getFullPrice ();
 
+console.log(allServicePrices);
+console.log(fullPrice);
+console.log(title);
+console.log(screens);
+console.log(parseFloat(screenPrice));
+console.log(adaptive);
+console.log(service1);
+console.log(parseFloat(servicePrice1));
+console.log(service2);
+console.log(parseFloat(servicePrice2));
+console.log(parseFloat(fullPrice));
+console.log(Math.round(servicePercentPrice));
