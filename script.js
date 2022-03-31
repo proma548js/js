@@ -9,7 +9,7 @@ let service2 = prompt('Какой дополнительный тип услуг
 let servicePrice2 = +prompt('Сколько это будет стоить?');
 let rollback = 20;
 let fullPrice;
-let servicePercentPrice = (fullPrice - (fullPrice * (rollback / 100)));
+let servicePercentPrice;
 let allServicePrices;
 
 const showTypeof = function (variable) {
@@ -37,36 +37,29 @@ function getFullPrice() {
 }
 
 const getTitle = function (str) {
-    return str.replace(/^ +| +$|( ) +/g, "$1").charAt(0).toUpperCase();
+    //return str.replace(/^ +| +$|( ) +/g, "$1").charAt(0).toUpperCase();
     //return title.toUpperCase();
     //return str[0,1].toUpperCase().replace(/^ +| +$|( ) +/g, "$1");
+   // return str.trim().toUpperCase()+ str.slice(1);
+   return str.trim()[0].toUpperCase() + str.trim().substr(1);
+};
+const getServicePercentPrices = function(){
+    return fullPrice - (fullPrice - (fullPrice * (rollback / 100))); 
 };
 
 
 allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice();
 title = getTitle(title);
+servicePercentPrice =getServicePercentPrices();
 
 showTypeof(title);
 showTypeof(screenPrice);
 showTypeof(adaptive);
 
 
-
+console.log(servicePercentPrice);
 console.log(getRollbackMessage(fullPrice));
 console.log(allServicePrices);
 console.log(fullPrice);
 console.log(title);
-/*
-console.log(title);
->>>>>>> dev
-console.log(screens);
-console.log(parseFloat(screenPrice));
-console.log(adaptive);
-console.log(service1);
-console.log(parseFloat(servicePrice1));
-console.log(service2);
-console.log(parseFloat(servicePrice2));
-console.log(parseFloat(fullPrice));
-console.log(Math.round(servicePercentPrice));
-*/
