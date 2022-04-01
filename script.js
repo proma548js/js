@@ -41,7 +41,7 @@ const getTitle = function (str) {
     //return title.toUpperCase();
     //return str[0,1].toUpperCase().replace(/^ +| +$|( ) +/g, "$1");
    // return str.trim().toUpperCase()+ str.slice(1);
-   return str.trim()[0].toUpperCase() + str.trim().substr(1);
+   return str.trim()[0].toUpperCase() + str.trim().substr(1).toLowerCase(1);
 };
 const getServicePercentPrices = function(){
     return fullPrice - (fullPrice - (fullPrice * (rollback / 100))); 
