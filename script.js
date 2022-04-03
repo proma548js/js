@@ -1,16 +1,4 @@
 'use strict';
-
-//let title;
-//let screens;
-//let screenPrice;
-//let adaptive;
-//let rollback = 20;
-//let allServicePrices;
-//let fullPrice;
-//let servicePercentPrice;
-//let service1;
-//let service2;
-
 const appData = {
     title: "",
     screens: "",
@@ -29,77 +17,67 @@ const appData = {
         do {
             appData.screenPrice = prompt('Сколько будет стоить данная работа?', "9999");
         }
-        while (!isNamber(appData.screenPrice));
+        while (!appData.isNamber(appData.screenPrice));
 
         appData.adaptive = window.confirm("Нужен ли адаптив на сайте", "1");
 
-    }
+    },
+    isNamber: function (num) {
+        return !isNaN(parseFloat(num)) && isFinite(num);
+    },
+    getAllServicePrices: function () {
+        let sum = 0;
 
-};
+        for (let i = 0; i < 2; i++) {
+            let price = 0;
 
-
-const isNamber = function (num) {
-    return !isNaN(parseFloat(num)) && isFinite(num);
-};
-
-
-
-const getAllServicePrices = function () {
-    let sum = 0;
-
-    for (let i = 0; i < 2; i++) {
-        let price = 0;
-
-        if (i === 0) {
-            appData.service1 = prompt('Какой дополнительный тип услуги нужен?');
-        } else if (i === 1) {
-            appData.service2 = prompt('Какой дополнительный тип услуги нужен?');
+            if (i === 0) {
+                appData.service1 = prompt('Какой дополнительный тип услуги нужен?');
+            } else if (i === 1) {
+                appData.service2 = prompt('Какой дополнительный тип услуги нужен?');
+            }
+            do {
+                price = prompt('Сколько это будет стоить');
+            } while (!appData.isNamber(price));
+            sum += +price;
         }
-        do {
-            price = prompt('Сколько это будет стоить');
-        } while (!isNamber(price));
-        sum += +price;
-    }
-    return sum;
-};
+        return sum;
+    },
+    getRollbackMessage: function (cena) {
+        if (cena > 30000) {
+            return 'Даем скидку в 10%';
+        } else if (15000 <= cena && 30000 >= cena) {
+            return 'Даем скидку в 5%';
+        } else if (0 <= cena && 15000 > cena) {
+            return ('Скидка не предусмотрена');
+        } else {
+            return 'Что то пошло не так';
+        }
 
+    },
+    getFullPrice: function () {
+        return +appData.screenPrice + appData.allServicePrices;
+    },
+    getServicePercentPrices: function () {
+        return appData.fullPrice - (appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)));
+    },
+    getTitle: function () {
+        return appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
+    },
 
-const getRollbackMessage = function (cena) {
-    if (cena > 30000) {
-        return 'Даем скидку в 10%';
-    } else if (15000 <= cena && 30000 >= cena) {
-        return 'Даем скидку в 5%';
-    } else if (0 <= cena && 15000 > cena) {
-        return ('Скидка не предусмотрена');
-    } else {
-        return 'Что то пошло не так';
-    }
-
-};
-
-
-function getFullPrice() {
-    return +appData.screenPrice + appData.allServicePrices;
-}
-
-const getServicePercentPrices = function () {
-    return appData.fullPrice - (appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)));
-};
-
-const getTitle = function () {
-    return appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
 };
 
 
 appData.asking();
-appData.allServicePrices = getAllServicePrices();
-appData.fullPrice = getFullPrice();
-appData.servicePercentPrice = getServicePercentPrices();
-appData.title = getTitle();
+appData.allServicePrices = appData.getAllServicePrices();
+appData.fullPrice = appData.getFullPrice();
+appData.servicePercentPrice = appData.getServicePercentPrices();
+appData.title = appData.getTitle();
 
 
 console.log(appData.fullPrice);
 console.log(appData.allServicePrices);
+console.log(appData.title);
 
 
 
