@@ -66,7 +66,20 @@ const appData = {
     },
     logger: function () {
 
+        for (let key in appData) {
+            if (typeof (appData[key]) === 'object') {
+
+                for (let i in appData[key]) {
+                    console.log(`Свойство ${i} имеет значение ${appData[key][i]}`);
+                }
+            }
+            else {
+                console.log(`Свойство ${key} имеет значение ${appData[key]}`);
+            }
+        }
+
     },
+
     start: function () {
         appData.asking();
         appData.allServicePrices = appData.getAllServicePrices();
@@ -80,14 +93,6 @@ const appData = {
 };
 
 appData.start();
-
-
-
-console.log(appData.fullPrice);
-console.log(appData.allServicePrices);
-console.log(appData.title);
-
-
 
 
 
