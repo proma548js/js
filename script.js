@@ -64,15 +64,23 @@ const appData = {
     getTitle: function () {
         return appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
     },
+    logger: function () {
+
+    },
+    start: function () {
+        appData.asking();
+        appData.allServicePrices = appData.getAllServicePrices();
+        appData.fullPrice = appData.getFullPrice();
+        appData.servicePercentPrice = appData.getServicePercentPrices();
+        appData.title = appData.getTitle();
+        appData.logger();
+    },
+
 
 };
 
+appData.start();
 
-appData.asking();
-appData.allServicePrices = appData.getAllServicePrices();
-appData.fullPrice = appData.getFullPrice();
-appData.servicePercentPrice = appData.getServicePercentPrices();
-appData.title = appData.getTitle();
 
 
 console.log(appData.fullPrice);
