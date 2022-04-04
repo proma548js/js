@@ -19,7 +19,7 @@ const appData = {
         }
         while (!appData.isNamber(appData.screenPrice));
 
-        appData.adaptive = window.confirm("Нужен ли адаптив на сайте", "1");
+        appData.adaptive = confirm("Нужен ли адаптив на сайте", "1");
 
     },
     isNamber: function (num) {
@@ -86,6 +86,7 @@ const appData = {
         appData.fullPrice = appData.getFullPrice();
         appData.servicePercentPrice = appData.getServicePercentPrices();
         appData.title = appData.getTitle();
+        appData.getRollbackMessage();
         appData.logger();
     },
 
