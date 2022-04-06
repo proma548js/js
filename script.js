@@ -10,6 +10,17 @@ const appData = {
     servicePercentPrice: 0,
     service1: "",
     service2: "",
+    start: function () {
+        appData.asking();
+        appData.allServicePrices = appData.getAllServicePrices();
+        appData.fullPrice = appData.getFullPrice();
+        appData.servicePercentPrice = appData.getServicePercentPrices();
+        appData.title = appData.getTitle();
+        appData.logger();
+    },
+    isNamber: function (num) {
+        return !isNaN(parseFloat(num)) && isFinite(num);
+    },
     asking: function () {
         appData.title = prompt('Как называется ваш проект?', "1");
         appData.screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные", "1");
@@ -19,12 +30,11 @@ const appData = {
         }
         while (!appData.isNamber(appData.screenPrice));
 
-        appData.adaptive = confirm("Нужен ли адаптив на сайте", "1");
+        appData.adaptive = window.confirm("Нужен ли адаптив на сайте", "1");
 
     },
-    isNamber: function (num) {
-        return !isNaN(parseFloat(num)) && isFinite(num);
-    },
+
+
     getAllServicePrices: function () {
         let sum = 0;
 
@@ -43,6 +53,15 @@ const appData = {
         }
         return sum;
     },
+    getFullPrice: function () {
+        return +appData.screenPrice + appData.allServicePrices;
+    },
+    getServicePercentPrices: function () {
+        return appData.fullPrice - (appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)));
+    },
+    getTitle: function () {
+        return appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
+    },
     getRollbackMessage: function (cena) {
         if (cena > 30000) {
             return 'Даем скидку в 10%';
@@ -55,15 +74,7 @@ const appData = {
         }
 
     },
-    getFullPrice: function () {
-        return +appData.screenPrice + appData.allServicePrices;
-    },
-    getServicePercentPrices: function () {
-        return appData.fullPrice - (appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)));
-    },
-    getTitle: function () {
-        return appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
-    },
+
     logger: function () {
 
         for (let key in appData) {
@@ -79,17 +90,6 @@ const appData = {
         }
 
     },
-
-    start: function () {
-        appData.asking();
-        appData.allServicePrices = appData.getAllServicePrices();
-        appData.fullPrice = appData.getFullPrice();
-        appData.servicePercentPrice = appData.getServicePercentPrices();
-        appData.title = appData.getTitle();
-        appData.getRollbackMessage();
-        appData.logger();
-    },
-
 
 };
 
