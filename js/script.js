@@ -17,11 +17,11 @@ const otherItemsPercent = document.querySelectorAll('.other-items.percent');
 const otherItemsNumber = document.querySelectorAll('.other-items.number');
 const rollback = document.querySelector('.rollback input');
 const span = document.querySelector('.rollback span');
-const totalInput = document.getElementsByClassName('total-input')[0];
-const totalInput1 = document.getElementsByClassName('total-input')[1];
-const totalInput2 = document.getElementsByClassName('total-input')[2];
-const totalInput3 = document.getElementsByClassName('total-input')[3];
-const totalInput4 = document.getElementsByClassName('total-input')[4];
+const Input = document.getElementsByClassName('total-input')[0];
+const Input1 = document.getElementsByClassName('total-input')[1];
+const Input2 = document.getElementsByClassName('total-input')[2];
+const Input3 = document.getElementsByClassName('total-input')[3];
+const Input4 = document.getElementsByClassName('total-input')[4];
 let screen = document.querySelectorAll('screen');
 
 
@@ -33,11 +33,11 @@ console.log(otherItemsPercent);
 console.log(otherItemsNumber);
 console.log(rollback);
 console.log(span);
-console.log(totalInput);
-console.log(totalInput1);
-console.log(totalInput2);
-console.log(totalInput3);
-console.log(totalInput4);
+console.log(Input);
+console.log(Input1);
+console.log(Input2);
+console.log(Input3);
+console.log(Input4);
 
 /*
 const appData = {
