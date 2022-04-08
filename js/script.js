@@ -22,7 +22,7 @@ const Input1 = document.getElementsByClassName('total-input')[1];
 const Input2 = document.getElementsByClassName('total-input')[2];
 const Input3 = document.getElementsByClassName('total-input')[3];
 const Input4 = document.getElementsByClassName('total-input')[4];
-let screen = document.querySelectorAll('screen');
+let screens = document.querySelectorAll('.screen');
 
 
 
@@ -38,6 +38,7 @@ console.log(Input1);
 console.log(Input2);
 console.log(Input3);
 console.log(Input4);
+console.log(screens);
 
 /*
 const appData = {
