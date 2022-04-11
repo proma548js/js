@@ -1,71 +1,39 @@
-'use strict';
-let title = prompt('Как называется ваш проект?');
-let screens = prompt('Какие типы экранов нужно разработать?', "Простые, Сложные, Интерактивные");
-let screenPrice = +prompt('Сколько будет стоить данная работа?', "пример: 12000");
-let adaptive = window.confirm("Нужен ли адаптив на сайте");
-let service1 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice1 = +prompt('Сколько это будет стоить?');
-let service2 = prompt('Какой дополнительный тип услуги нужен?');
-let servicePrice2 = +prompt('Сколько это будет стоить?');
-let rollback = 20;
-let fullPrice;
-let servicePercentPrice = (fullPrice - (fullPrice * (rollback / 100)));
-let allServicePrices;
+const books = document.querySelector('.books');
+const book = document.querySelectorAll('.book');
+const adv = document.querySelectorAll('.adv');
+const body = document.querySelector('body');
+const booksThree =book[4].querySelector('h2 a');
+const booksOne =book[0].querySelectorAll('li');
+const booksThreeLi =book[5].querySelectorAll('li');
+const booksSixLi =book[2].querySelectorAll('li');
+const cloneElement =booksThreeLi[2].cloneNode(true);
 
-const showTypeof = function (variable) {
-    console.log(variable, typeof variable);
-};
+book[0].before(book[1]);
+book[2].before(book[4]);
+book[5].before(book[2]);
+book[2].before(book[5]);
+body.style.backgroundImage = 'url(image/you-dont-know-js.jpg)';
+booksThree.innerHTML = 'Книга 3. this и Прототипы Объектов';
+adv[0].remove();
+booksOne[3].after(booksOne[6]);
+booksOne[6].after(booksOne[8]);
+booksOne[9].after(booksOne[2]);
 
-const getRollbackMessage = function (cena) {
-    if (cena > 30000) {
-        return 'Даем скидку в 10%';
-    } else if (15000 <= cena && 30000 >= cena) {
-        return 'Даем скидку в 5%';
-    } else if (0 <= cena && 15000 > cena) {
-        return ('Скидка не предусмотрена');
-    } else {
-        return 'Что то пошло не так';
-    }
-
-};
-
-const getAllServicePrices = function () {
-    return servicePrice1 + servicePrice2;
-};
-function getFullPrice() {
-    return screenPrice + allServicePrices;
-}
-
-const getTitle = function (str) {
-    return str.replace(/^ +| +$|( ) +/g, "$1").charAt(0).toUpperCase();
-    //return title.toUpperCase();
-    //return str[0,1].toUpperCase().replace(/^ +| +$|( ) +/g, "$1");
-};
-
-
-allServicePrices = getAllServicePrices();
-fullPrice = getFullPrice();
-title = getTitle(title);
-
-showTypeof(title);
-showTypeof(screenPrice);
-showTypeof(adaptive);
+booksThreeLi[1].after(booksThreeLi[9]);
+booksThreeLi[9].after(booksThreeLi[3]);
+booksThreeLi[3].after(booksThreeLi[4]);
+booksThreeLi[7].after(booksThreeLi[5]);
+cloneElement.textContent ='Глава 8: За пределами ES6';
+book[2].append(cloneElement);
+booksSixLi[8].after(cloneElement);
 
 
 
-console.log(getRollbackMessage(fullPrice));
-console.log(allServicePrices);
-console.log(fullPrice);
-console.log(title);
-/*
-console.log(title);
-console.log(screens);
-console.log(parseFloat(screenPrice));
-console.log(adaptive);
-console.log(service1);
-console.log(parseFloat(servicePrice1));
-console.log(service2);
-console.log(parseFloat(servicePrice2));
-console.log(parseFloat(fullPrice));
-console.log(Math.round(servicePercentPrice));
-*/
+console.log(books);
+console.log(book);
+console.log(body);
+console.log(booksThree);
+console.log(booksOne);
+console.log(booksThreeLi);
+console.log(cloneElement);
+console.log(booksSixLi);
