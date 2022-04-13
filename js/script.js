@@ -1,48 +1,31 @@
 'use strict';
-//console.dir(document.childNodes);//список узлов
-//console.dir(document.body);//сразу к узлу body
-//const title = document.getElementById('title');
-//console.dir(title.textContent);//
-
-
-
 
 const title = document.getElementsByTagName('h1')[0];
-const buttonCountingDumping = document.getElementsByClassName('handler_btn');
 const buttonPlus = document.querySelector('.screen-btn');
-//const allOtherItems = document.querySelectorAll('.other-items ');
-//const otherItemsPercent = document.allOtherItems.querySelectorAll('.number');
-//const otherItemsNumber = document.allOtherItems.querySelectorAll('.percent');
 const otherItemsPercent = document.querySelectorAll('.other-items.percent');
 const otherItemsNumber = document.querySelectorAll('.other-items.number');
-const rollback = document.querySelector('.rollback input');
-const span = document.querySelector('.rollback span');
-const Input = document.getElementsByClassName('total-input')[0];
-const Input1 = document.getElementsByClassName('total-input')[1];
-const Input2 = document.getElementsByClassName('total-input')[2];
-const Input3 = document.getElementsByClassName('total-input')[3];
-const Input4 = document.getElementsByClassName('total-input')[4];
+
+const inputRange = document.querySelector('.rollback input');
+const inputRangeValue = document.querySelector('.rollback .range-value');
+
+const startBtn = document.getElementsByClassName('handler_btn')[0];
+const resetBtn = document.getElementsByClassName('handler_btn')[1];
+
+const total = document.getElementsByClassName('total-input')[0];
+const totalCount = document.getElementsByClassName('total-input')[1];
+const totalCountOther = document.getElementsByClassName('total-input')[2];
+const fullTotalCount = document.getElementsByClassName('total-input')[3];
+const totalCounRollback = document.getElementsByClassName('total-input')[4];
+
 let screens = document.querySelectorAll('.screen');
 
 
 
-console.log(title);
-console.log(buttonCountingDumping);
-console.log(buttonPlus);
-console.log(otherItemsPercent);
-console.log(otherItemsNumber);
-console.log(rollback);
-console.log(span);
-console.log(Input);
-console.log(Input1);
-console.log(Input2);
-console.log(Input3);
-console.log(Input4);
-console.log(screens);
 
-/*
+
+
 const appData = {
-    title: "",
+    title: '',
     screens: [],
     screenPrice: 0,
     adaptive: true,
@@ -63,22 +46,13 @@ const appData = {
         return !isNaN(parseFloat(num)) && isFinite(num);
     },
     asking: function () {
-        do {
+      
             appData.title = prompt('Как называется ваш проект?', "1");
-        }
-        while (appData.isNamber(appData.title));
+  
 
         for (let i = 0; i < 2; i++) {
-            let name;
-            do {
-                name = prompt('Какие типы экранов нужно разработать?');
-            }
-            while (appData.isNamber(name));
-
-
-
-
-
+            let name = prompt('Какие типы экранов нужно разработать?');
+          
             let price = 0;
 
             do {
@@ -91,14 +65,8 @@ const appData = {
 
 
         for (let i = 0; i < 2; i++) {
-            let name;
-            do {
-                name = prompt('Какой дополнительный тип услуги нужен?');
-            }
-            while (appData.isNamber(name));
-
-
-            let price = 0;
+            let  name = prompt('Какой дополнительный тип услуги нужен?');
+             let price = 0;
 
             do {
                 price = prompt('Сколько это будет стоить');
@@ -160,4 +128,3 @@ const appData = {
 };
 
 appData.start();
-*/
