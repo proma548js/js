@@ -20,10 +20,6 @@ const totalCounRollback = document.getElementsByClassName('total-input')[4];
 let screens = document.querySelectorAll('.screen');
 
 
-
-
-
-
 const appData = {
     title: '',
     screens: [],
@@ -33,40 +29,85 @@ const appData = {
     allServicePrices: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
-    services: {},
-    start: function () {
-        appData.asking();
-        appData.addPrices();
-        appData.getFullPrice();
-        appData.getServicePercentPrices();
-        appData.getTitle();
-        appData.logger();
+    servicesPercent: {},
+    servicesNumber: {},
+    init: function () {
+        this.addTitle();
+        appData.start();
+        startBtn.addEventListener('click', appData.start);
+        buttonPlus.addEventListener('click', appData.addScreenBlock);
+
     },
-    isNamber: function (num) {
-        return !isNaN(parseFloat(num)) && isFinite(num);
+    addTitle: function () {
+        document.title = title.textContent;
+    },
+    start: function () {
+
+        appData.addScreens();
+        appData.addServices();
+        //  appData.asking();
+        //  appData.addPrices();
+        //  appData.getFullPrice();
+        //  appData.getServicePercentPrices();
+        //  appData.getTitle();
+        //  appData.logger();
+    },
+
+    addScreens: function () {
+        screens = document.querySelectorAll('.screen')
+        screens.forEach(function (screen, index) {
+            const select = screen.querySelector('select');
+            const input = screen.querySelector('input');
+            const selectName = select.options[select.selectedIndex].textContent;
+            //console.log(select.value);
+            //console.log(input.value);
+            //console.log(select.options[select.selectedIndex].textContent);
+            appData.screens.push({
+                id: index,
+                name: selectName,
+                price: +select.value * +input.value
+            });
+        });
+
+
+    },
+    addServices: function () {
+        otherItemsPercent.forEach(function (item) {
+            const check = item.querySelector('input[type=checkbox]');
+            const label = item.querySelector('label');
+            const input = item.querySelector('input[type=text]');
+            console.log(check);
+            console.log(label);
+            console.log(input);
+            if (check.checked) {
+                appData.servicesPercent[label.textContent] = +input.value;
+            }
+        })
+        otherItemsNumber.forEach(function (item) {
+            const check = item.querySelector('input[type=checkbox]');
+            const label = item.querySelector('label');
+            const input = item.querySelector('input[type=text]');
+            console.log(check);
+            console.log(label);
+            console.log(input);
+            if (check.checked) {
+                appData.servicesNumber[label.textContent] = +input.value;
+            }
+
+        });
+        console.log(appData);
+    },
+    addScreenBlock: function () {
+        const cloneScreen = screens[0].cloneNode(true);
+
+        //console.log(cloneScreen);
+        screens[screens.length - 1].after(cloneScreen);
     },
     asking: function () {
-      
-            appData.title = prompt('Как называется ваш проект?', "1");
-  
 
         for (let i = 0; i < 2; i++) {
-            let name = prompt('Какие типы экранов нужно разработать?');
-          
+            let name = prompt('Какой дополнительный тип услуги нужен?');
             let price = 0;
-
-            do {
-                price = prompt('Сколько будет стоить данная работа?', "9999");
-            }
-            while (!appData.isNamber(price));
-
-            appData.screens.push({ id: i, name: name, price: price });
-        }
-
-
-        for (let i = 0; i < 2; i++) {
-            let  name = prompt('Какой дополнительный тип услуги нужен?');
-             let price = 0;
 
             do {
                 price = prompt('Сколько это будет стоить');
@@ -74,7 +115,7 @@ const appData = {
             appData.services[name] = +price;
         }
 
-        appData.adaptive = confirm("Нужен ли адаптив на сайте");
+
 
     },
     addPrices: function () {
@@ -127,4 +168,4 @@ const appData = {
 
 };
 
-appData.start();
+appData.init();
