@@ -26,7 +26,8 @@ const appData = {
     screenPrice: 0,
     adaptive: true,
     rollback: 20,
-    allServicePrices: 0,
+    servicePricesPercent: 0,
+    servicePricesNumber: 0,
     fullPrice: 0,
     servicePercentPrice: 0,
     servicesPercent: {},
@@ -45,16 +46,23 @@ const appData = {
 
         appData.addScreens();
         appData.addServices();
-        //  appData.asking();
-        //  appData.addPrices();
-        //  appData.getFullPrice();
+
+        appData.addPrices();
+
         //  appData.getServicePercentPrices();
-        //  appData.getTitle();
+
         //  appData.logger();
+        console.log(appData);
+        appData.showResult();
+    },
+    showResult: function () {
+        total.value = appData.screenPrice;
+        totalCountOther.value = appData.servicePricesPercent + appData.servicePricesNumber;
+        fullTotalCount.value = appData.fullPrice;
     },
 
     addScreens: function () {
-        screens = document.querySelectorAll('.screen')
+        screens = document.querySelectorAll('.screen');
         screens.forEach(function (screen, index) {
             const select = screen.querySelector('select');
             const input = screen.querySelector('input');
@@ -122,21 +130,21 @@ const appData = {
         for (let screen of appData.screens) {
             appData.screenPrice += +screen.price;
         }
-        for (let key in appData.screenPrice) {
-            appData.allServicePrices += appData.screenPrice[key];
+        for (let key in appData.servicesNumber) {
+            appData.servicePricesNumber += appData.servicesNumber[key];
         }
+        for (let key in appData.servicesPercent) {
+            appData.servicePricesPercent += appData.screenPrice * (appData.servicesPercent[key] / 100);
+        }
+        appData.fullPrice = +appData.screenPrice + appData.servicePricesNumber + appData.servicePricesPercent;
     },
 
 
-    getFullPrice: function () {
-        appData.fullPrice = +appData.screenPrice + appData.allServicePrices;
-    },
+
     getServicePercentPrices: function () {
         appData.servicePercentPrice = appData.fullPrice - (appData.fullPrice - (appData.fullPrice * (appData.rollback / 100)));
     },
-    getTitle: function () {
-        appData.title = appData.title.trim()[0].toUpperCase() + appData.title.trim().substr(1).toLowerCase();
-    },
+
     getRollbackMessage: function (cena) {
         if (cena > 30000) {
             return 'Даем скидку в 10%';
@@ -151,19 +159,7 @@ const appData = {
     },
 
     logger: function () {
-
-        for (let key in appData) {
-            if (typeof (appData[key]) === 'object') {
-
-                for (let i in appData[key]) {
-                    console.log(`Свойство ${i} имеет значение ${appData[key][i]}`);
-                }
-            }
-            else {
-                console.log(`Свойство ${key} имеет значение ${appData[key]}`);
-            }
-        }
-        console.log(appData.screens);
+        console.log(appData);
     },
 
 };
